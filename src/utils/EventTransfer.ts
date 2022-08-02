@@ -5,6 +5,7 @@ type EventTransferPayloadType = {
     name: string;
     debug?: boolean;
 }
+
 export const EventTransfer = ({data, EventName, tag, name, debug}: EventTransferPayloadType) => {
     const thisTag = tag ? `${tag}-` : ''
     const type = `${name}-${thisTag}${EventName}`
