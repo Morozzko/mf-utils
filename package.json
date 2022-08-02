@@ -13,7 +13,7 @@
   "author": "Morozzko",
   "license": "ISC",
   "scripts": {
-    "bump": "git push && npm version patch",
+    "bump": "npm version patch",
     "rollup": "rm -rf ./dist && rollup -c",
     "prebuild": "npm run bump",
     "build": "npm run rollup"
