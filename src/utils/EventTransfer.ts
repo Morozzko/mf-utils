@@ -1,14 +1,27 @@
 type EventTransferPayloadType = {
-    EventName: string;
-    data: object;
-    tag?: string;
-    name: string;
+    data: object | string | number | boolean | any[];
     debug?: boolean;
+    name: string | NameType
 }
 
-export const EventTransfer = ({data, EventName, tag, name, debug}: EventTransferPayloadType) => {
-    const thisTag = tag ? `${tag}-` : ''
-    const type = `${name}-${thisTag}${EventName}`
+type NameType = {
+    eventName: string;
+    tag?: string;
+    mfName: string;
+}
+
+export const EventTransfer = ({data, name, debug}: EventTransferPayloadType) => {
+    let type
+
+    if (typeof name === 'object') {
+        const {tag, mfName, eventName} = name
+        const thisTag = tag ? `${tag}-` : ''
+        type = `${mfName}-${thisTag}${eventName}`
+    } else {
+        type = name
+    }
+
+
     const Event = new CustomEvent(type, {detail: {data}})
 
     dispatchEvent(Event)
