@@ -15,7 +15,7 @@
   "scripts": {
     "bump": "npm version patch",
     "rollup": "rm -rf ./dist && rollup -c",
-    "prebuild": "npm run bump",
+    "postbuild": "npm run bump",
     "build": "npm run rollup"
   },
   "devDependencies": {
